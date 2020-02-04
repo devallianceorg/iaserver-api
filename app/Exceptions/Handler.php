@@ -64,6 +64,17 @@ class Handler extends ExceptionHandler
                 'error_line' => $exception->getLine(),
             ]);
         } else {
+
+            if ($request->ajax() || $request->wantsJson())
+            {
+                return response()->json([
+                    'error' => $exception->getMessage(),
+                    'error_type' => 'FatalErrorException',
+                    'error_file' => $exception->getFile(),
+                    'error_line' => $exception->getLine(),
+                ]);
+            }
+
             return parent::render($request, $exception);
         }
     }

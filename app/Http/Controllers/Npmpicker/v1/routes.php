@@ -1,8 +1,6 @@
 <?php
-// En caso de ocupar la ruta por medio de VUE
 Route::get('/', 'Npmpicker@index');
 
-Route::get('/info/{fecha}/{id_linea}/{turno}', 'Npmpicker@GetLinea');
-Route::get('/stat/{id_stat}', 'Npmpicker@GetStat');
-
-
+Route::get('/resume/{fecha}', 'Npmpicker@GetPing');
+Route::get('/resume/{fecha}/{id_linea}/{turno}/{estado?}', 'Npmpicker@GetFeeders');
+Route::get('/stat/{id_stat}', 'Npmpicker@GetFeederDetail');
