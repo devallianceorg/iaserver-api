@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Npmpicker\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Core\ApiConsume;
 use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerData;
 use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerPing;
 use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerStat;
