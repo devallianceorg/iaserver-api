@@ -9,7 +9,7 @@ class NpmpickerStat extends Model
     protected $table = 'stat';
     protected $connection = 'npmpicker';
 
-    protected $appends = ['fullname','rate'];
+    protected $appends = ['fullname','rate','rate_level'];
 
     public function getFullnameAttribute()
     {
@@ -22,6 +22,15 @@ class NpmpickerStat extends Model
         $rate = round($percent, 2);
 
         return $rate;
+    }
+
+    public function getRateLevelAttribute()
+    {
+        if($this->rate>5) { return 'alto';}
+        if($this->rate>2) { return 'medio';}
+
+        return 'bajo';
+
     }
 
     public function detail()
