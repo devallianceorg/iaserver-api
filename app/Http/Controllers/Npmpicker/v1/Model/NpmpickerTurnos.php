@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Npmpicker\v1\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NpmpickerData extends Model
+class NpmpickerTurnos extends Model
 {
-    protected $table = 'data';
+    protected $table = 'turnos';
     protected $connection = 'npmpicker';
     public $timestamps = false;
 
-   
+    protected $casts = [
+        'desde' => 'datetime',
+        'hasta' => 'datetime'
+    ];
 
     protected $fillable = [
-        'id','id_stat','total_error','total_pickup','hora','inspeccion','ajuste'
+        'nombre','turno','desde','hasta'
     ];
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerData;
 use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerPing;
 use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerStat;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class Npmpicker extends Controller
 {
@@ -36,10 +37,9 @@ class Npmpicker extends Controller
             $fecha = Carbon::now()->toDateString();
         }
 
-        $feeders = NpmpickerStat::whereDate('fecha',$fecha)
+        $feeders = NpmpickerStat::where('fecha',$fecha)
             ->where('id_linea',$id_linea)
             ->where('turno',$turno);
-
         if($estado) {
             $feeders->where('estado',$estado);
         }
@@ -53,6 +53,49 @@ class Npmpicker extends Controller
             ->get();
 
         return compact('detail');
+    }
+
+    public function GetStatInfo(Request $req)
+    {
+        if(!$req->has("fecha"))
+        {
+            $fecha = Carbon::now()->toDateString();
+        }
+        else{
+            $fecha = $req->fecha;
+        }
+
+        $npmpickerstat = NpmpickerStat::where('id_linea',$req->linea)
+                                        ->where('maquina',$req->maquina)
+                                        ->where('modulo',$req->modulo)
+                                        ->where('tabla',$req->tabla)
+                                        ->where('feeder',$req->feeder)
+                                        ->where('partnumber',$req->partnumber)
+                                        ->where('programa',$req->programa)
+                                        ->where('op',$req->op)
+                                        ->where('turno',$req->turno)
+                                        ->where('fecha',$fecha)->first();
+
+        return compact('npmpickerstat');
+    }
+
+    public function GetTurno()
+    {
+        $turno = 'M';
+        $hora = Carbon::now()->format('H:i');
+        $tarde = new Carbon('15:00');
+        $tarde = $tarde->format('H:i');
+
+        if($hora < $tarde)
+        {
+            $turno = 'M';
+        }
+        else
+        {
+            $turno = 'T';
+        }
+        
+        return compact('turno');
     }
 
     /*

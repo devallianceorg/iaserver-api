@@ -14,7 +14,7 @@ class NpmpickerPingAbmUpdateReq extends FormRequest
     public function rules()
     {
         return [
-            'ping' => 'required|date',
+            'ping' => 'required|string',
             'hostname' => 'required|string',
             'version' => 'required|string'
         ];
