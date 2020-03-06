@@ -108,6 +108,23 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'smtdatabase' => [
+            'driver' => 'mysql',
+            'host' => env('SMTDATABASE_DB_HOST', 'iaserver-mysql'),
+            'port' => env('SMTDATABASE_DB_PORT', '3306'),
+            'database' => env('SMTDATABASE_DB_DATABASE', 'smtdatabase'),
+            'username' => env('SMTDATABASE_DB_USERNAME', 'iaserver'),
+            'password' => env('SMTDATABASE_DB_PASSWORD', 'iaserver'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
     ],
 
     /*
