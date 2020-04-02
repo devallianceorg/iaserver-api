@@ -8,6 +8,8 @@ use App\Http\Controllers\Smtdatabase\v1\Model\Materiales;
 use App\Http\Controllers\Smtdatabase\v1\Model\MaterialIndex;
 use App\Http\Controllers\Smtdatabase\v1\Model\OrdenTrabajo;
 use App\Http\Controllers\Smtdatabase\v1\Request\SmtdatabaseOrdenTrabajoUpdateReq;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Smtdatabase extends Controller
 {
@@ -91,9 +93,70 @@ class Smtdatabase extends Controller
         return $select_var;
     }
 
+    public function GetAllOp()
+    {
+        return OrdenTrabajo::select('op','qty')->get();
+    }
+
     public function CheckPcb($logop,$descripcion,$asignacion)
     {
         $posiblePcb = 0;
         
     }
+
+    // ********************
+    // **** MATERIALES ****
+    // ********************
+
+    public static function findComponente($componente,$likeMode=false)
+    {
+        $query = Materiales::select(DB::raw("
+            i.modelo,
+            m.logop,
+            m.componente,
+            m.descripcion_componente,
+            m.asignacion
+            "))
+            ->from("smtdatabase.materiales as m")
+            ->join( 'smtdatabase.material_index as mi', 'mi.id_material', 'm.id')
+            ->join( 'smtdatabase.ingenieria as i', 'i.id','mi.id_ingenieria');
+
+            // Si está buscando semielaborado
+            if($likeMode) {
+                $query = $query->where('m.componente','like',"4-651-%$componente%");
+            } else { // Si no, busca componente
+                $query = $query->where('m.componente',$componente);
+            }
+            
+            $query = $query->groupBy([
+                'i.modelo','m.logop','m.componente','m.descripcion_componente','m.asignacion'
+                ])->get();
+                
+        return compact("query");
+    }
+
+    public static function findSemielaborado($semielaborado)
+    {
+        $sql = self::findComponente($semielaborado,true);
+        return $sql;
+    }
+
+    public static function allSemielaboradoByModelo($modelo)
+    {
+        $sql = Materiales::select(DB::raw("
+            i.modelo,
+            i.lote,
+	        m.*"))
+            ->from("smtdatabase.materiales as m")
+            ->join( 'smtdatabase.material_index as mi','mi.id_material','m.id' )
+            ->join( 'smtdatabase.ingenieria as i','i.id','mi.id_ingenieria' )
+            ->where('i.modelo',$modelo)
+            ->where('m.componente','like',"4-651-%")->get();
+
+        return $sql;
+    }
+
+    // ************************
+    // **** END MATERIALES ****
+    // ************************
 }

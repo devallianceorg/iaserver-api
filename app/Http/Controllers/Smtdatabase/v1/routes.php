@@ -6,8 +6,16 @@ Route::get('/modelos/get','Smtdatabase@QueryModels');
 Route::get('/lotes/get','Smtdatabase@QueryBatch');
 Route::put('/op/update/{modo}/{op}/{total}','Smtdatabase@IncProductionOpBy');
 Route::get('/modelo/{materialId}','Smtdatabase@ModeloLoteByMaterialId');
-Route::get('/material/descripcion/','Smtdatabase@QueryDesc');
+
+// Materiales
 Route::get('/material/get','Smtdatabase@CheckMaterial');
+Route::get('/material/descripcion/','Smtdatabase@QueryDesc');
+Route::get('/material/buscar/{componente?}/{likeMode?}','Smtdatabase@findComponente');
+// END Materiales
+
+// Semielaborados
+Route::get('/semielaborado/buscar/{modelo}','Smtdatabase@allSemielaboradoByModelo');
+// END Semielaborados
 
 
 

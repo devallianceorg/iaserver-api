@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Smtdatabase\v1\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SmtdatabaseOrdenTrabajoUpdateReq extends FormRequest
+class SmtdatabaseIngenieriaAbmUpdateReq extends FormRequest
 {
     public function authorize()
     {
@@ -14,23 +14,21 @@ class SmtdatabaseOrdenTrabajoUpdateReq extends FormRequest
     public function rules()
     {
         return [
-            'op' => 'required|string',
-            'qty'=> 'string'
+            'fecha_modificacion' => 'required|string'
         ];
     }
 
     public function attributes()
     {
         return [
-            'op' => 'El campo op',
-            'qty'=> 'El campo string'
+            'fecha_modificacion' => 'El campo fecha_modificacion'
         ];
     }
 
     public function messages()
     {
         return [
-            'op.required' => 'op es Requerido'
+            'fecha_modificacion.required' => 'fecha_modificacion es Requerido'
         ];
     }
 }
