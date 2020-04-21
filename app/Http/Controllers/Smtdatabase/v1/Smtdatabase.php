@@ -22,6 +22,33 @@ class Smtdatabase extends Controller
     	return $output;
     }
 
+    public static function findOp($op)
+    {
+        $sql = OrdenTrabajo::where('op',$op)->first();
+        return $sql;
+    }
+
+    public static function syncSmtWithWip($smt,$wip)
+    {
+        // Verifica si existe alguna actualizacion en la cantidad de la OP y la actualiza en SMTDatabase
+        if($wip!=null && $wip->wip_ot != null && $smt!=null)
+        {
+            if($smt->semielaborado != $wip->wip_ot->codigo_producto)
+            {
+                $smt->semielaborado = $wip->wip_ot->codigo_producto;
+                $smt->save();
+            }
+
+            if(((int)$smt->qty != (int)$wip->wip_ot->start_quantity) && $wip->wip_ot->start_quantity!=null)
+            {
+                $smt->qty = $wip->wip_ot->start_quantity;
+                $smt->save();
+            }
+        }
+
+        return $smt;
+    }
+
     public function QueryModels()
     {
         return Ingenieria::select('modelo')

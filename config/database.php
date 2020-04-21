@@ -91,6 +91,24 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'aoidata' => [
+            'driver' => 'mysql',
+            'host' => env('AOIDATA_DB_HOST', '127.0.0.1'),
+            'port' => env('AOIDATA_DB_PORT', '3306'),
+            'database' => env('AOIDATA_DB_DATABASE', 'forge'),
+            'username' => env('AOIDATA_DB_USERNAME', 'forge'),
+            'password' => env('AOIDATA_DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'npmpicker' => [
             'driver' => 'mysql',
             'host' => env('NPMPICKER_DB_HOST', '127.0.0.1'),
