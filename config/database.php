@@ -143,6 +143,37 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+
+        'stencil' => [
+            'driver' => 'mysql',
+            'host' => env('STENCIL_DB_HOST', 'iaserver-mysql'),
+            'port' => env('STENCIL_DB_PORT', '3306'),
+            'database' => env('STENCIL_DB_DATABASE', 'stencil'),
+            'username' => env('STENCIL_DB_USERNAME', 'iaserver'),
+            'password' => env('STENCIL_DB_PASSWORD', 'iaserver'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'authapi' => [
+            'driver' => 'sqlsrv',
+            'url' => env('AUTHAPI_URL'),
+            'host' => env('AUTHAPI_HOST', 'localhost'),
+            'port' => env('AUTHAPI_PORT', '1433'),
+            'database' => env('AUTHAPI_DATABASE', 'forge'),
+            'username' => env('AUTHAPI_USERNAME', 'forge'),
+            'password' => env('AUTHAPI_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
     ],
 
     /*

@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $connection = 'authapi';
+
     /**
      * The attributes that are mass assignable.
      *

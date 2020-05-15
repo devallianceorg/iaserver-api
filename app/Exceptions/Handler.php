@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Debug\Exception\FatalErrorException;
@@ -54,6 +55,14 @@ class Handler extends ExceptionHandler
                 'error' => 'La ruta a la que intenta acceder no existe',
                 'error_code' => 404
             ]);
+        }
+
+        if ($exception instanceof ModelNotFoundException)
+        {
+            return response()->json([
+                'error' => 'No se encontraron resultados',
+            ], 404);
+
         }
 
         if(env('APP_DEBUG')==false) {
