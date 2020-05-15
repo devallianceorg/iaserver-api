@@ -6,6 +6,7 @@ use App\Http\Controllers\ControlDeStencil\v1\Model\Lavado;
 use App\Http\Controllers\ControlDeStencil\v1\Request\LavadoCreateReq;
 use App\Http\Controllers\ControlDeStencil\v1\Request\LavadoUpdateReq;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class LavadoAbm extends Controller
 {
@@ -16,7 +17,16 @@ class LavadoAbm extends Controller
 
     public function create(LavadoCreateReq $req)
     {
-        $create = Lavado::create($req->all());
+        $create = new Lavado();
+        $create->id_operador = $req['id_operador'];
+        $create->codigo= strtoupper($req['codigo']);
+
+        $create->fecha= Carbon::now();
+        $create->hora = Carbon::now();
+
+        $create->save();
+
+
         return compact('create');
     }
 
