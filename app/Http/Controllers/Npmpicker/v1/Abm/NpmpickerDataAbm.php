@@ -7,7 +7,7 @@ use App\Http\Controllers\Npmpicker\v1\Model\NpmpickerData;
 use App\Http\Controllers\Npmpicker\v1\Request\NpmpickerDataAbmCreateReq;
 use App\Http\Controllers\Npmpicker\v1\Request\NpmpickerDataAbmUpdateReq;
 
-class NpmpickerStatAbm extends Controller
+class NpmpickerDataAbm extends Controller
 {
 
     public function create(NpmpickerDataAbmCreateReq $req)
