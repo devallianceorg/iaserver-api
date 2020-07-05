@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Aoicollector\v1;
 
+use App\Http\Controllers\Cogiscan\v1\Cogiscan;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Smtdatabase\v1\Smtdatabase;
 use App\Http\Controllers\Trazabilidad\v1\Wip\Wip;

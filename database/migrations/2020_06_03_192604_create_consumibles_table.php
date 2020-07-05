@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateConsumiblesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        if (!Schema::connection('controlconsumibles')->hasTable('consumibles')) 
+        {
+            Schema::connection('controlconsumibles')->create('consumibles', function (Blueprint $table) {
+                $table->bigIncrements('id')->unique();
+                $table->string('tipo');
+                $table->string('modelo');
+                $table->string('presentacion');
+                $table->string('diasOk');
+                $table->timestamps();
+            });
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection('controlconsumibles')->dropIfExists('consumibles');
+    }
+}

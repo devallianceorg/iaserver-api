@@ -17,5 +17,10 @@ Route::get('/material/buscar/{componente?}/{likeMode?}','Smtdatabase@findCompone
 Route::get('/semielaborado/buscar/{modelo}','Smtdatabase@allSemielaboradoByModelo');
 // END Semielaborados
 
+// Orden de Trabajo
+Route::post('/ordentrabajo/create','Abm\OrdenTrabajoAbm@create');
+Route::put('/ordentrabajo/update','Abm\OrdenTrabajoAbm@update');
+Route::post('/ordentrabajo/delete','Abm\OrdenTrabajoAbm@delete');
+
 
 

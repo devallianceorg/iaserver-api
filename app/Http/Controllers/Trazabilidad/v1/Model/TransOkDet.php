@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransOkDet extends Model
 {
-    protected $connection = 'traza';
+    protected $connection = 'sqlebs';
     protected $table = 'Trans_Ok_det';
 
     public $timestamps = false;

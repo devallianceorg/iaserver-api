@@ -144,9 +144,9 @@ class Smtdatabase extends Controller
             m.descripcion_componente,
             m.asignacion
             "))
-            ->from("smtdatabase.materiales as m")
-            ->join( 'smtdatabase.material_index as mi', 'mi.id_material', 'm.id')
-            ->join( 'smtdatabase.ingenieria as i', 'i.id','mi.id_ingenieria');
+            ->from("materiales as m")
+            ->join( 'material_index as mi', 'mi.id_material', 'm.id')
+            ->join( 'ingenieria as i', 'i.id','mi.id_ingenieria');
 
             // Si está buscando semielaborado
             if($likeMode) {
@@ -174,9 +174,9 @@ class Smtdatabase extends Controller
             i.modelo,
             i.lote,
 	        m.*"))
-            ->from("smtdatabase.materiales as m")
-            ->join( 'smtdatabase.material_index as mi','mi.id_material','m.id' )
-            ->join( 'smtdatabase.ingenieria as i','i.id','mi.id_ingenieria' )
+            ->from("materiales as m")
+            ->join( 'material_index as mi','mi.id_material','m.id' )
+            ->join( 'ingenieria as i','i.id','mi.id_ingenieria' )
             ->where('i.modelo',$modelo)
             ->where('m.componente','like',"4-651-%")->get();
 

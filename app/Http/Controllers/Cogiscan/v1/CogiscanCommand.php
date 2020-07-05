@@ -1,9 +1,10 @@
 <?php
-namespace App\Http\Controllers\Cogiscan;
+namespace App\Http\Controllers\Cogiscan\v1;
 
 use Exception;
-use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
+use Artisaninweb\SoapWrapper\SoapWrapper;
 use App\Exceptions\CogiscanExceptionHandler;
+use App\Exceptions\Handler;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -11,9 +12,15 @@ class CogiscanCommand extends Controller
 {
 	private $serviceResponseXml;
 	private $serviceResponseArray;
+
+	/**
+   * @var SoapWrapper
+   */
+  protected $soapWrapper;
 	
-	public function __construct($command) {
+	public function __construct($command, SoapWrapper $soapWrapper) {
 		$this->serviceResponseArray = $this->executeCommand($command);
+		$this->soapWrapper = $soapWrapper;
 	}
 	
 	public function result() {

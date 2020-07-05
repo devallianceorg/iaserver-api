@@ -10,9 +10,9 @@ class BloqueController extends Controller
   public static function buscar($barcode,$proceso="")
   {
     $q = Bloque::where('ib.barcode', $barcode)
-        ->from('aoidata.inspeccion_bloque as ib')
-        ->leftjoin('aoidata.inspeccion_panel as ip','ib.id_panel','=','ip.id')
-        ->leftjoin('aoidata.maquina as m','ip.id_maquina','=','m.id')
+        ->from('inspeccion_bloque as ib')
+        ->leftjoin('inspeccion_panel as ip','ib.id_panel','=','ip.id')
+        ->leftjoin('maquina as m','ip.id_maquina','=','m.id')
         ->where('ib.etiqueta','E');
 
     if($proceso == "B")

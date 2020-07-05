@@ -18,28 +18,30 @@ class PanelController extends Controller
           stkroute.name as stocker_route,
           proute.name as panel_route,
           hp.*
-      from `aoidata`.`history_inspeccion_panel` as `hp`
-      inner join `aoidata`.`inspeccion_panel` as `p` on hp.id_panel_history = p.last_history_inspeccion_panel
-    left join `aoidata`.`transaccion_wip` as tw on tw.barcode = hp.panel_barcode
-      left join `aoidata`.`stocker_detalle` as stkd on stkd.id_panel = p.id
-      left join `aoidata`.`stocker` as stk on stk.id = stkd.id_stocker
-      left join `aoidata`.`stocker_traza` as stkt on stkt.id_stocker = stk.id and stkt.id = (SELECT MAX(substkt.id) FROM aoidata.stocker_traza substkt where substkt.id_stocker =  stkd.id_stocker)
-      left join `aoidata`.`stocker_route` as stkroute on stkroute.id = stkt.id_stocker_route
-      left join `aoidata`.`stocker_route` as proute on proute.id = tw.id_last_route
+      from history_inspeccion_panel as hp
+      inner join inspeccion_panel as p on hp.id_panel_history = p.last_history_inspeccion_panel
+    left join transaccion_wip as tw on tw.barcode = hp.panel_barcode
+      left join stocker_detalle as stkd on stkd.id_panel = p.id
+      left join stocker as stk on stk.id = stkd.id_stocker
+      left join stocker_traza as stkt on stkt.id_stocker = stk.id and stkt.id = (SELECT MAX(substkt.id) FROM stocker_traza substkt where substkt.id_stocker =  stkd.id_stocker)
+      left join stocker_route as stkroute on stkroute.id = stkt.id_stocker_route
+      left join stocker_route as proute on proute.id = tw.id_last_route
 
   where
 
       hp.inspected_op = '$op'
 
       and not exists (
-              select stw.trans_ok from `aoidata`.`transaccion_wip` as stw where
+              select stw.trans_ok from transaccion_wip as stw where
               stw.barcode = hp.panel_barcode and
               stw.trans_ok = 1
           )
 
       order by hp.created_date asc, hp.created_time asc";
 
-      return DB::connection('aoidata')->select($query);
+
+    //   DEPRECAR
+      return DB::connection('aoidata')->select(DB::raw($query));
   }
 
   public static function buscar($barcode)

@@ -1,9 +1,13 @@
 <?php
-namespace App\Http\Controllers\Trazabilidad;
+namespace App\Http\Controllers\Trazabilidad\v1;
 
+use App\Http\Controllers\Aoicollector\Model\Panel;
+use App\Http\Controllers\Aoicollector\v1\PanelController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Smtdatabase\v1\Smtdatabase;
 use App\Http\Controllers\Trazabilidad\v1\Wip\Wip;
+use App\Http\Controllers\Trazabilidad\v1\Wip\WipSerie;
+use App\Http\Controllers\Trazabilidad\v1\Wip\WipSerieHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -14,14 +18,20 @@ class Trazabilidad extends Controller
     
   }
 
-  /**
+    /**
      * Muestra todas las OP activas o liberadas
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        return $this->wipInfo();
+        // $name = 'Trazabilidad';
+        // $version = 'v1';
+
+        // $output = compact('name','version');
+        // return $output;
+        
+        return $this->wipInfoCtrl();
     }
 
     /**
@@ -32,31 +42,23 @@ class Trazabilidad extends Controller
      */
     public function findOp(Request $request,$op="")
     {
-		$op = strtoupper( $op );
+        
+        $op = strtoupper( $op );
 		if(empty($op))
 		{
-			$op = strtoupper( $request->input('op') );
-		}	
-
-        return $this->wipInfo($op);
-    }
-
-    
-
-    public function wipInfo($op="")
-    {
-        $output = $this->wipInfoCtrl($op);
-
-       // dd($output);
-
-        return Response::multiple($output,'trazabilidad.index');
+            $op = strtoupper( $request->input('op') );
+        }	
+        
+        return $this->wipInfoCtrl($op);
     }
 
     public function wipInfoCtrl($op="")
     {
         $objwip = new Wip();
-        $controldeplacas = null;
 
+        
+        $controldeplacas = null;
+        
         if(!empty($op))
         {
            
@@ -77,33 +79,30 @@ class Trazabilidad extends Controller
 
             $wip = $objwip->findOp($op,true,true);
             $smt = Smtdatabase::findOp($op);
+            
             SMTDatabase::syncSmtWithWip($smt,$wip);
-
+            
+            
             if(isset($smt->modelo)) {
                 $smt->registros = Panel::where('inspected_op',$op)->count();
-                $controldeplacas = (object) DatosController::salidaByOp($op);
+                // $controldeplacas = (object) DatosController::salidaByOp($op);
             }
-
-            $sinDeclarar = Panel::sinDeclarar($op);
-
-           
-
-//            $wipPeriod = collect($wip->period($op)->get());
-
+            
+            $sinDeclarar = PanelController::sinDeclarar($op);
+            
+            
+            //            $wipPeriod = collect($wip->period($op)->get());
+            
+            // CREAR CONEXION DESA PARA EBS EN SQL
             $manualWip = new WipSerie();
             $manualWiph = new WipSerieHistory();
-
+            
             $manualWipSerie = $manualWip->transactionResume($op,true);
             $manualWipHistory = $manualWiph->transactionResume($op,true);
-
-           // dd($manualWipHistory);
-           
-
+            
         }
-
-        $output = compact('op','wip','smt','controldeplacas','manualWipSerie','manualWipHistory','enIa','enWip','sinDeclarar');
-
         
+        $output = compact('op','wip','smt','controldeplacas','manualWipSerie','manualWipHistory','enIa','enWip','sinDeclarar');
 
         return $output;
    }

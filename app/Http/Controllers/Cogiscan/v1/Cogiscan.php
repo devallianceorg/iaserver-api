@@ -1,12 +1,14 @@
 <?php
-namespace App\Http\Controllers\Cogiscan;
+namespace App\Http\Controllers\Cogiscan\v1;
 
 ini_set("default_socket_timeout", 120);
 
-use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
-use App\Http\Controllers\Trazabilidad\Declaracion\Wip\Wip;
+// use Artisaninweb\SoapWrapper\Facades\SoapWrapper;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Trazabilidad\v1\Wip\Wip;
+use Artisaninweb\SoapWrapper\SoapWrapper;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -35,15 +37,24 @@ class Cogiscan extends Controller
     public function __construct() {
         try
         {
-            SoapWrapper::add(function ($service) {
+            SoapWrapper::add('cogiscan',function ($service) {
                 $service
-                    ->name('cogiscan')
                     ->wsdl($this->wdsl);
             });
         } catch(\Exception $ex)
         {
 
         }
+    }
+
+    public function index()
+    {
+        $name = 'Cogiscan';
+        $version = 'v1';
+
+        $output = compact('name','version');
+        return $output;
+        
     }
 
     /**
@@ -56,7 +67,7 @@ class Cogiscan extends Controller
         $output = array();
 
         $command = Request::segment(2);
-        $attributes= array_except( Request::segments() , [0,1]);
+        $attributes= Arr::except( Request::segments() , [0,1]);
         if(method_exists($this,$command))
         {
             $attributes = $this->normalizeAttributes($attributes);
@@ -91,7 +102,7 @@ class Cogiscan extends Controller
      */
     protected function services()
     {
-        $class = 'IAServer\Http\Controllers\Cogiscan\Cogiscan';
+        $class = 'App\Http\Controllers\Cogiscan\v1\Cogiscan';
 
         $array1 = get_class_methods($class);
         if($parent_class = get_parent_class($class)){

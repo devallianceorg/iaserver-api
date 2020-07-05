@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionsUserTable extends Migration
+class CreatePlacasdevTurnoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePermissionsUserTable extends Migration
      */
     public function up()
     {
-        if (!Schema::connection('sqlsrv')->hasTable('failed_jobs')) 
+        if (!Schema::connection('controlplacas')->hasTable('turno')) 
         {
-            Schema::create('permissions_user', function (Blueprint $table) {
+            Schema::create('turno', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->timestamps();
+                $table->string('turno');
             });
         }
     }
@@ -29,6 +29,6 @@ class CreatePermissionsUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions_user');
+        Schema::connection('controlplacas')->dropIfExists('turno');
     }
 }

@@ -12,7 +12,7 @@ class OrdenTrabajoAbm extends Controller
 
     public function create(OrdenTrabajoAbmCreateReq $req)
     {
-        $npmpickerdata = OrdenTrabajo::create($req->all());
+        $ordentrabajo = OrdenTrabajo::create($req->all());
         return compact('ordentrabajo');
     }
 
@@ -20,23 +20,22 @@ class OrdenTrabajoAbm extends Controller
     public function update(OrdenTrabajoAbmUpdateReq $req)
     {
 
-        $npmpickerdata = Ingenieria::find($req->id);
+        $ordentrabajo = OrdenTrabajo::find($req->id);
 
-        $npmpickerdata->id_stat = $req->id_stat;
-        $npmpickerdata->total_error = $req->total_error;
-        $npmpickerdata->total_pickup = $req->total_pickup;
-        $npmpickerdata->hora = $req->hora;
-        $npmpickerdata->inspeccion = $req->inspeccion;
-        $npmpickerdata->ajuste = $req->ajuste;
+        $ordentrabajo->modelo = $req->modelo;
+        $ordentrabajo->lote = $req->lote;
+        $ordentrabajo->panel = $req->panel;
+        $ordentrabajo->semielaborado = $req->semielaborado;
+        $ordentrabajo->qty = $req->qty;
 
-        $updated = $npmpickerdata->save();
+        $updated = $ordentrabajo->save();
         
         return compact('updated');
     }
 
     public function delete($id)
     {
-        $deleted = Ingenieria::where('id',$id)->delete();
+        $deleted = OrdenTrabajo::where('id',$id)->delete();
         return compact('deleted');
     }
 

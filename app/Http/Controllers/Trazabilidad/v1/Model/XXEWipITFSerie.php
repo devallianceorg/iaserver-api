@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class XXEWipITFSerie extends Model
 {
-    protected $connection = 'traza';
+    protected $connection = 'sqlebs';
     protected $table = 'XXE_WIP_ITF_SERIE';
 
     public $timestamps = false;

@@ -14,7 +14,7 @@ class Panel extends Model
   public function scopeBuscarPanel($query, $barcode)
   {
       return $this->where('panel_barcode',$barcode)
-          ->leftJoin('aoidata.maquina', 'maquina.id','=','id_maquina')
+          ->leftJoin('maquina', 'maquina.id','=','id_maquina')
           ->select(['inspeccion_panel.*','maquina.linea'])
           ->get();
   }

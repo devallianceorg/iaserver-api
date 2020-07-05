@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePlacasdevLotesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        if (!Schema::connection('controlplacas')->hasTable('lotes')) 
+        {
+            Schema::connection('controlplacas')->create('lotes', function (Blueprint $table) {
+                $table->bigIncrements('id')->unique();
+                $table->string('modelo');
+                $table->string('lote');
+                $table->integer('total');
+                $table->date('fecha');
+            });
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection('controlplacas')->dropIfExists('lotes');
+    }
+}

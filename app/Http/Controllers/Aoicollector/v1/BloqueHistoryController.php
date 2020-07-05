@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aoicollector\v1;
 
 use App\Http\Controllers\Aoicollector\Model\BloqueHistory;
+use App\Http\Controllers\Aoicollector\v1\Inspection\VerificarDeclaracion;
 use App\Http\Controllers\Controller;
 
 class BloqueHistoryController extends Controller

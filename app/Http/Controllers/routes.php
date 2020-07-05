@@ -1,5 +1,6 @@
 <?php
-// En caso de ocupar la ruta por medio de VUE
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'ApiHome@index');
 
 

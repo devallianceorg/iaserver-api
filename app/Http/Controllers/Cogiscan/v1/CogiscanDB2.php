@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Cogiscan;
+namespace App\Http\Controllers\Cogiscan\v1;
 
 ini_set("default_socket_timeout", 120);
 
@@ -26,7 +26,7 @@ class CogiscanDB2 extends Controller
      */
     protected function dynamicCommands(){
         $command = Request::segment(3);
-        $attributes= array_except( Request::segments() , [0,1,2]);
+        $attributes= Arr::except( Request::segments() , [0,1,2]);
 
         $output = "";
         if(method_exists($this,$command))
@@ -53,7 +53,7 @@ class CogiscanDB2 extends Controller
 
     private function services()
     {
-        $class = 'IAServer\Http\Controllers\Cogiscan\CogiscanDB2';
+        $class = 'App\Http\Controllers\Cogiscan\CogiscanDB2';
 
         $array1 = get_class_methods($class);
         if($parent_class = get_parent_class($class)){

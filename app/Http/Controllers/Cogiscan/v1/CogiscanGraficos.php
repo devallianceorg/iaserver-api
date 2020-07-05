@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Cogiscan;
+namespace App\Http\Controllers\Cogiscan\v1;
 
 use Carbon\Carbon;
 use DebugBar\DebugBar;

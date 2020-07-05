@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Aoicollector\v1;
 
 use App\Http\Controllers\Aoicollector\Model\Panel;
 use App\Http\Controllers\Aoicollector\Model\PanelHistory;
+use App\Http\Controllers\Cogiscan\v1\Cogiscan;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Smtdatabase\v1\Smtdatabase;
 use App\Http\Controllers\Trazabilidad\v1\Wip\Wip;
@@ -29,7 +30,7 @@ class PanelHistoryController extends Controller
         } else
         {
             // Luego busca en BloqueHistory
-            $bloque = BloqueHistory::buscar($barcode);
+            $bloque = BloqueHistoryController::buscar($barcode);
 
             if (count($bloque) > 0)
             {

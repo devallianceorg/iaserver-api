@@ -2,9 +2,9 @@
 namespace App\Http\Controllers\Trazabilidad\v1\Wip;
 
 use App\Http\Controllers\IAServer\Util;
-use App\Http\Controllers\Trazabilidad\v1\Model\XXEWipOt;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 
 class Wip extends Controller
 {
@@ -23,9 +23,9 @@ class Wip extends Controller
     {
         $serie = new WipSerie();
         $history = new WipSerieHistory();
-
+        
         $op = str_replace('-B','',$op);
-
+        
         // Obtiene datos de OP Activa
         $wipOt = $this->otInfo($op);
 
@@ -180,11 +180,12 @@ class Wip extends Controller
         $declaradas = $arr_merge->where('ebs_error_trans',null)->where('trans_ok','1')->sum('total');
         $pendientes = $arr_merge->where('trans_ok','0')->sum('total');
 
-        $arr_errores = array_where($arr_merge, function($key, $value)
-        {
-            $value = (object) $value;
-            if($value->ebs_error_trans != null || $value->trans_ok > 1 ) return $value;
-        });
+        $arr_errores = $arr_merge->whereNotNull('ebs_error_trans');
+        // $arr_errores = Arr::where($arr_merge, function($key, $value)
+        // {
+        //     $value = (object) $value;
+        //     if($value->ebs_error_trans != null || $value->trans_ok > 1 ) return $value;
+        // });
 
         $errores = collect($arr_errores)->sum('total');
 
@@ -234,7 +235,7 @@ class Wip extends Controller
      */
     public function otInfo($op)
     {
-        $wipot = XXEWipOt::findOp($op);
+        $wipot = WipOt::findOp($op);
         return $wipot;
     }
 

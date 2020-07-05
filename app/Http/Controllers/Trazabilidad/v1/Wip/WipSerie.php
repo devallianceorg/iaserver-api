@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class WipSerie extends WipSerieCommons
 {
-    public $class = 'App\Http\Controllers\Trazabilidad\Declaracion\Wip\Model\XXEWipITFSerie';
+    public $class = 'App\Http\Controllers\Trazabilidad\v1\Model\XXEWipITFSerie';
 
     public function findAllBarcodesForPo($op)
     {
