@@ -70,13 +70,13 @@ class PanelHistoryController extends Controller
         return $query;
     }
 
-    /**
-     * Lista las inspecciones realizadas en una maquina en la fecha solicitada
-     *
-     * @param int $id_maquina
-     * @param string $fecha
-     * @param string $op
-     * @return null
+    
+    //  * Lista las inspecciones realizadas en una maquina en la fecha solicitada
+    //  *
+    //  * @param int $id_maquina
+    //  * @param string $fecha
+    //  * @param string $op
+    //  * @return null
     public static function listar($id_maquina, $fecha, $op, $minOrMax = 'MAX')
     {
         $q = null;
@@ -114,8 +114,8 @@ class PanelHistoryController extends Controller
 
         return $q;
     }
-     */
-/*
+     
+
     public static function listarOp($id_maquina, $fecha, $op)
     {
         $q = null;
@@ -135,7 +135,7 @@ class PanelHistoryController extends Controller
 
         return $q;
     }
-*/
+
     public function scopePeriod($query, $idMaquinaOrOP, $maxOrmin='MAX', $fecha='CURDATE()',$minutes=60)
     {
         $id_maquina = null;
