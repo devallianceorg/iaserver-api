@@ -15,7 +15,7 @@ class CreatePlacasdevTurnoTable extends Migration
     {
         if (!Schema::connection('controlplacas')->hasTable('turno')) 
         {
-            Schema::create('turno', function (Blueprint $table) {
+            Schema::connection('controlplacas')->create('turno', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('turno');
             });

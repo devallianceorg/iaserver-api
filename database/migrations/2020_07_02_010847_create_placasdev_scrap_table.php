@@ -15,7 +15,7 @@ class CreatePlacasdevScrapTable extends Migration
     {
         if (!Schema::connection('controlplacas')->hasTable('scrap')) 
         {
-            Schema::create('scrap', function (Blueprint $table) {
+            Schema::connection('controlplacas')->create('scrap', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('modelo');
                 $table->string('lote');

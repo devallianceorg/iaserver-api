@@ -15,7 +15,7 @@ class CreatePlacasdevSectorTable extends Migration
     {
         if (!Schema::connection('controlplacas')->hasTable('sector')) 
         {
-            Schema::create('sector', function (Blueprint $table) {
+            Schema::connection('controlplacas')->create('sector', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('sector');
                 $table->tinyInteger('visible');

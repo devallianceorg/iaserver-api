@@ -106,7 +106,7 @@ return [
         'aoidata' => [
             'driver' => 'sqlsrv',
             'host' => env('AOIDATA_DB_HOST', '127.0.0.1'),
-            'port' => env('AOIDATA_DB_PORT', '3306'),
+            'port' => env('AOIDATA_DB_PORT', '1433'),
             'database' => env('AOIDATA_DB_DATABASE', 'forge'),
             'username' => env('AOIDATA_DB_USERNAME', 'forge'),
             'password' => env('AOIDATA_DB_PASSWORD', ''),
