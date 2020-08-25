@@ -1,0 +1,2544 @@
+{
+	"info": {
+		"_postman_id": "ff9c3b6b-b743-47e5-b823-d4b4f4ebd843",
+		"name": "IAServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "api_key",
+								"value": "{{api_key}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "root",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "toor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:82/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "82",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:82/acl/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "82",
+							"path": [
+								"acl",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:82/acl/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "82",
+							"path": [
+								"acl",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Permisos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:82/acl/permission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "82",
+							"path": [
+								"acl",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Roles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:82/acl/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "82",
+							"path": [
+								"acl",
+								"role"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Control de Stencil",
+			"item": [
+				{
+					"name": "Armarios",
+					"item": [
+						{
+							"name": "Listar Armarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/armario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"armario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Armario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/armario/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"armario",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "26"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Armario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "nombre",
+											"value": "casa",
+											"type": "text"
+										},
+										{
+											"key": "fila",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "columna",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/armario/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"armario",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Armario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "26",
+											"type": "text"
+										},
+										{
+											"key": "nombre",
+											"value": "Almacen 77",
+											"type": "text"
+										},
+										{
+											"key": "fila",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "columna",
+											"value": "14",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/armario/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"armario",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Armario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/armario/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"armario",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "26"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lavados",
+					"item": [
+						{
+							"name": "Listar Lavados",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Lavado",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "22112"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Lavados por Codigo de Stencil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado/codigo/:codigo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado",
+										"codigo",
+										":codigo"
+									],
+									"variable": [
+										{
+											"key": "codigo",
+											"value": "ITEM241"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Lavado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "codigo",
+											"value": "item259",
+											"type": "text"
+										},
+										{
+											"key": "id_operador",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Lavado",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "22112",
+											"type": "text"
+										},
+										{
+											"key": "id_operador",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "codigo",
+											"value": "ITEM250",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Lavado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/lavado/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"lavado",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "22111"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Observaciones",
+					"item": [
+						{
+							"name": "Listar Observaciones",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Observaciones por Codigo de Stencil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones/codigo/:codigo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones",
+										"codigo",
+										":codigo"
+									],
+									"variable": [
+										{
+											"key": "codigo",
+											"value": "ITEM243"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Observaciones por Id Operador",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones/operador/:id_operador",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones",
+										"operador",
+										":id_operador"
+									],
+									"variable": [
+										{
+											"key": "id_operador",
+											"value": "23"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Observacion",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "codigo",
+											"value": "item259",
+											"type": "text"
+										},
+										{
+											"key": "texto",
+											"value": "mensaje de sugerencia",
+											"type": "text"
+										},
+										{
+											"key": "id_operador",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Observacion",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "955",
+											"type": "text"
+										},
+										{
+											"key": "id_operador",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "codigo",
+											"value": "item250",
+											"type": "text"
+										},
+										{
+											"key": "texto",
+											"value": "montoototot",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Observacion",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/observaciones/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"observaciones",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "955"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Stencil",
+					"item": [
+						{
+							"name": "Listar Stenciles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil?keyword=sony",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil"
+									],
+									"query": [
+										{
+											"key": "codigo",
+											"value": "ITEM241",
+											"disabled": true
+										},
+										{
+											"key": "keyword",
+											"value": "sony"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Stencil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1691"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stencil por Codigo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil/codigo/:codigo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil",
+										"codigo",
+										":codigo"
+									],
+									"variable": [
+										{
+											"key": "codigo",
+											"value": "codigo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Stencil",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "codigo",
+											"value": "montoto",
+											"type": "text"
+										},
+										{
+											"key": "modelo",
+											"value": "MontotoModel",
+											"type": "text"
+										},
+										{
+											"key": "placa",
+											"value": "MAIN",
+											"type": "text"
+										},
+										{
+											"key": "lado",
+											"value": "TOPMODEL",
+											"type": "text"
+										},
+										{
+											"key": "serie",
+											"value": "serie",
+											"type": "text"
+										},
+										{
+											"key": "job",
+											"value": "job",
+											"type": "text"
+										},
+										{
+											"key": "pcb",
+											"value": "pcb",
+											"type": "text"
+										},
+										{
+											"key": "cliente",
+											"value": "cliente",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Stencil",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "1691",
+											"type": "text"
+										},
+										{
+											"key": "codigo",
+											"value": "codigo",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "modelo",
+											"value": "modelo",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "placa",
+											"value": "placa",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "lado",
+											"value": "lado",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "serie",
+											"value": "serie",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "job",
+											"value": "job",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "pcb",
+											"value": "pcb",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "cliente",
+											"value": "cliente",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "usos",
+											"value": "10",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Stencil",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/stencil/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"stencil",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1691"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Tension",
+					"item": [
+						{
+							"name": "Listar Tensiones",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Tension",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "613"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista de tensiones por codigo de stencil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension/codigo/:codigo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension",
+										"codigo",
+										":codigo"
+									],
+									"variable": [
+										{
+											"key": "codigo",
+											"value": "COD417"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Tension",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_operador",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "codigo",
+											"value": "cod417",
+											"type": "text"
+										},
+										{
+											"key": "tension",
+											"value": "40",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Tension",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "613",
+											"type": "text"
+										},
+										{
+											"key": "tension",
+											"value": "79",
+											"type": "text"
+										},
+										{
+											"key": "codigo",
+											"value": "cod43",
+											"type": "text"
+										},
+										{
+											"key": "id_operador",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Tension",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/tension/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"tension",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "613"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Ubicacion",
+					"item": [
+						{
+							"name": "Listar Ubicaciones",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Ubicacion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ubicacion de codigo de stencil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion/codigo/:codigo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion",
+										"codigo",
+										":codigo"
+									],
+									"variable": [
+										{
+											"key": "codigo",
+											"value": "item417"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ubicacion",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "codigo",
+											"value": "item417",
+											"type": "text"
+										},
+										{
+											"key": "id_armario",
+											"value": "22",
+											"type": "text"
+										},
+										{
+											"key": "fila",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "columna",
+											"value": "0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Ubicacion",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "11309",
+											"type": "text"
+										},
+										{
+											"key": "id_armario",
+											"value": "22",
+											"type": "text"
+										},
+										{
+											"key": "fila",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "columna",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Ubicacion",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/controldestencil/v1/ubicacion/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"controldestencil",
+										"v1",
+										"ubicacion",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11309"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "NPMPicker",
+			"item": [
+				{
+					"name": "Pickdata",
+					"item": [
+						{
+							"name": "Listar Pickdata",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Pickdata",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "19029461",
+											"description": "ID Pickdata\n"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Stat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata/byidstat/:id_stat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata",
+										"byidstat",
+										":id_stat"
+									],
+									"variable": [
+										{
+											"key": "id_stat",
+											"value": "69778",
+											"description": "ID Stat"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Pickdata",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_stat",
+											"value": "69778",
+											"type": "text"
+										},
+										{
+											"key": "total_error",
+											"value": "8",
+											"type": "text"
+										},
+										{
+											"key": "total_pickup",
+											"value": "33174",
+											"type": "text"
+										},
+										{
+											"key": "inspeccion",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "ajuste",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Pickdata",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "19029461",
+											"type": "text"
+										},
+										{
+											"key": "id_stat",
+											"value": "69779",
+											"type": "text"
+										},
+										{
+											"key": "total_error",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "total_pickup",
+											"value": "33177",
+											"type": "text"
+										},
+										{
+											"key": "inspeccion",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "ajuste",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Pickdata",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/pickdata/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"pickdata",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "19029457",
+											"description": "ID pickdata"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Ping",
+					"item": [
+						{
+							"name": "Listar Ping",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "37750",
+											"description": "ID Ping"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle por linea",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping/bylinea/:fecha",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping",
+										"bylinea",
+										":fecha"
+									],
+									"variable": [
+										{
+											"key": "fecha",
+											"value": "",
+											"description": "Por defecto filtra fecha actual"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Ping",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_linea",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "M",
+											"type": "text"
+										},
+										{
+											"key": "maquina",
+											"value": "cm",
+											"type": "text"
+										},
+										{
+											"key": "hostname",
+											"value": "SMD-4",
+											"type": "text"
+										},
+										{
+											"key": "version",
+											"value": "1.0.2.0",
+											"type": "text"
+										},
+										{
+											"key": "flag",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Ping",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "37752",
+											"type": "text"
+										},
+										{
+											"key": "id_linea",
+											"value": "8",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "T",
+											"type": "text"
+										},
+										{
+											"key": "maquina",
+											"value": "ZM",
+											"type": "text"
+										},
+										{
+											"key": "hostname",
+											"value": "SMD-8",
+											"type": "text"
+										},
+										{
+											"key": "version",
+											"value": "1.0.2.7",
+											"type": "text"
+										},
+										{
+											"key": "flag",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Ping",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/ping/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"ping",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "37750",
+											"description": "ID Ping"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Stat",
+					"item": [
+						{
+							"name": "Listar Stat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Stat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat",
+										":id"
+									],
+									"variable": [
+										{
+											"description": "ID Stat",
+											"key": "id",
+											"value": "562462"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Estado de feeders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat/feeders/:fecha/:id_linea/:turno/:estado",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat",
+										"feeders",
+										":fecha",
+										":id_linea",
+										":turno",
+										":estado"
+									],
+									"variable": [
+										{
+											"key": "fecha",
+											"value": "2014-03-10"
+										},
+										{
+											"key": "id_linea",
+											"value": "20"
+										},
+										{
+											"key": "turno",
+											"value": "M"
+										},
+										{
+											"key": "estado",
+											"value": "estable",
+											"description": "estable|inestable"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Stat",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_linea",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "maquina",
+											"value": "NPM",
+											"type": "text"
+										},
+										{
+											"key": "modulo",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "tabla",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "feeder",
+											"value": "5-L",
+											"type": "text"
+										},
+										{
+											"key": "partnumber",
+											"value": "EAX123",
+											"type": "text"
+										},
+										{
+											"key": "programa",
+											"value": "MAIN-BOT",
+											"type": "text"
+										},
+										{
+											"key": "op",
+											"value": "OP-1234",
+											"type": "text"
+										},
+										{
+											"key": "total_error",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "total_pickup",
+											"value": "3333",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "M",
+											"type": "text"
+										},
+										{
+											"key": "count",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "estado",
+											"value": "estable",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Stat",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "562462",
+											"type": "text"
+										},
+										{
+											"key": "id_linea",
+											"value": "201",
+											"type": "text"
+										},
+										{
+											"key": "maquina",
+											"value": "CM",
+											"type": "text"
+										},
+										{
+											"key": "modulo",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tabla",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "feeder",
+											"value": "5-R",
+											"type": "text"
+										},
+										{
+											"key": "partnumber",
+											"value": "EAX123MM",
+											"type": "text"
+										},
+										{
+											"key": "programa",
+											"value": "MAIN-BOTMM",
+											"type": "text"
+										},
+										{
+											"key": "op",
+											"value": "OP-1234M",
+											"type": "text"
+										},
+										{
+											"key": "total_error",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "total_pickup",
+											"value": "1010",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "T",
+											"type": "text"
+										},
+										{
+											"key": "count",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "estado",
+											"value": "inestable",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Stat",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/stat/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"stat",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"description": "ID Ping",
+											"key": "id",
+											"value": "562462"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Turnos",
+					"item": [
+						{
+							"name": "Listar Turnos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/turnos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"turnos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detalle de Id Turno",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/turnos/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"turnos",
+										":id"
+									],
+									"variable": [
+										{
+											"description": "ID Turno",
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Turno",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "nombre",
+											"value": "Vespertinu",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "T",
+											"type": "text"
+										},
+										{
+											"key": "desde",
+											"value": "14:00:00",
+											"type": "text"
+										},
+										{
+											"key": "hasta",
+											"value": "16:00:00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/turnos/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"turnos",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Turno",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "nombre",
+											"value": "Vespertino",
+											"type": "text"
+										},
+										{
+											"key": "turno",
+											"value": "T",
+											"type": "text"
+										},
+										{
+											"key": "desde",
+											"value": "14:00:01",
+											"type": "text"
+										},
+										{
+											"key": "hasta",
+											"value": "16:00:01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/turnos/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"turnos",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Turno",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:81/npmpicker/v1/turnos/delete/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "81",
+									"path": [
+										"npmpicker",
+										"v1",
+										"turnos",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"description": "ID Turno",
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
