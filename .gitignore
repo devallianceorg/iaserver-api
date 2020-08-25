@@ -20,3 +20,5 @@ nginx-php-fpm/laravel-post-install\.log
 package-lock\.json
 
 /public/lte/
+
+docs/
