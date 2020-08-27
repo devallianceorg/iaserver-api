@@ -9,37 +9,6 @@ use GuzzleHttp\Exception\BadResponseException;
 
 class ApiLogin extends Controller
 {
-    public function index() {
-        return view('login');
-    }
-
-    public function start() {
-        $response = $this->doLogin();
-
-        if(isset($response['error']))
-        {
-            return redirect(route('login'))->withErrors(['auth.api'=>$response['error']]);
-        }
-
-        if(isset($response['token'])) {
-            $token = $response['token'];
-            $user = $this->getUserData($token);
-
-            session()->put('token', $token);
-            session()->put('user', $user);
-
-            return redirect()->route('home');
-        } else {
-            return $response;
-        }
-    }
-
-    public function logout()
-    {
-        session()->flush();
-        return redirect()->route('home');
-    }
-
     public function getUserData($token) {
         $authRoute = env('IASERVER_AUTH_API').'/me';
         $params = [
@@ -52,34 +21,17 @@ class ApiLogin extends Controller
 
             // Obtiene el contenido de la respuesta, la transforma a json
             $content = $consumeApi->getBody()->getContents();
-            $req = json_decode($content,true);
-        } catch (BadResponseException $ex) {
-            $content = $ex->getResponse();
-            $error = json_decode($content->getBody(), true);
-            return $error;
+            return json_decode($content,true);
+        } catch (\Exception $ex) {
+
+            if($ex instanceof BadResponseException) {
+                $content = $ex->getResponse();
+                return  json_decode($content->getBody(), true);
+            }
+            // Si es un error no controlado...
+            $error = $ex->getMessage();
+            return compact('error');
         }
-
-        return $req;
-    }
-
-    private function doLogin() {
-        $authRoute = env('IASERVER_AUTH_API').'/login';
-        $params = request()->all();
-
-        try {
-            $guzzle = new Client();
-            $consumeApi = $guzzle->request('POST',$authRoute,['query' => $params]);
-
-            // Obtiene el contenido de la respuesta, la transforma a json
-            $content = $consumeApi->getBody()->getContents();
-            $req = json_decode($content,true);
-        } catch (BadResponseException $ex) {
-            $content = $ex->getResponse();
-            $error = json_decode($content->getBody(), true);
-            return $error;
-        }
-
-        return $req;
     }
 
     // Static utils
@@ -91,11 +43,32 @@ class ApiLogin extends Controller
 
         return $user;
     }
+    public static function name() {
+        return self::user('name');
+    }
+    public static function roles() {
+        return collect(self::user('acl')['roles']);
+    }
+    public static function permisos() {
+        return collect(self::user('acl')['permisos']);
+    }
     public static function token() {
         return session('token');
     }
-
     public static function apikey() {
         return env('X_IASERVER_APIKEY');
+    }
+    public static function owner($id) {
+        if ($id == self::user('id')) {
+            return true;
+        }
+        return false;
+    }
+    public static function isAdmin() {
+        $roles = self::roles();
+        if($roles->contains('superadmin')) {
+            return true;
+        }
+        return false;
     }
 }
