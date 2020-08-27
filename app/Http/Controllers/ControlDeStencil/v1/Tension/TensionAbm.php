@@ -6,10 +6,16 @@ use App\Http\Controllers\ControlDeStencil\v1\_model\Tension;
 use App\Http\Controllers\ControlDeStencil\v1\_request\TensionCreateReq;
 use App\Http\Controllers\ControlDeStencil\v1\_request\TensionUpdateReq;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\ApiLogin;
 use Carbon\Carbon;
 
 class TensionAbm extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api')->except('show');
+    }
+
     public function show($id) {
         $show = Tension::findOrFail($id);
         return $show;
@@ -19,6 +25,7 @@ class TensionAbm extends Controller
     {
         $now = Carbon::now();
         $req->merge([
+            'id_operador' => ApiLogin::user('id'),
             'fecha' => $now,
         ]);
 
@@ -42,7 +49,14 @@ class TensionAbm extends Controller
     public function delete($id)
     {
         $item = Tension::findOrFail($id);
-        $deleted = $item->delete();
-        return compact('deleted');
+        if(
+            ApiLogin::owner($item->id_operador) ||
+            ApiLogin::isAdmin()
+        ) {
+            $deleted = $item->delete();
+            return compact('deleted');
+        }
+
+        return ['error'=>'No tiene permiso para eliminar este registro'];
     }
 }
