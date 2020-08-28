@@ -15,7 +15,6 @@ class ObservacionesCreateReq extends FormRequest
     {
         return [
             'codigo' => 'required|string',
-            'id_operador' => 'required|integer',
             'texto' => 'required|string',
         ];
     }

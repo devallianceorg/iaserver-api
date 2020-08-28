@@ -54,6 +54,7 @@ class Handler extends ExceptionHandler
         {
             return response()->json([
                 'error' => $exception->errors(),
+                'error_type' => 'ValidationException',
                 'error_code' => 422
             ]);
         }
@@ -62,6 +63,7 @@ class Handler extends ExceptionHandler
         {
             return response()->json([
                 'error' => 'La ruta a la que intenta acceder no existe',
+                'error_type' => 'NotFoundHttpException',
                 'error_code' => 404
             ]);
         }
@@ -70,6 +72,8 @@ class Handler extends ExceptionHandler
         {
             return response()->json([
                 'error' => 'No se encontraron resultados',
+                'error_type' => 'ModelNotFoundException',
+                'error_code' => 404
             ], 404);
 
         }
