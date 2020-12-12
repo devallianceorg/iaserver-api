@@ -13,7 +13,7 @@ class StencilFind extends Controller
         $keyword = request('keyword');
 
         if($codigo!=null) {
-            $lista = Stencil::where('codigo',$codigo)->paginate();
+            $lista = Stencil::where('codigo',$codigo)->orderByDesc('id')->paginate();
             return $lista;
         }
 
@@ -26,11 +26,12 @@ class StencilFind extends Controller
                 ->orWhere('job',$keyword)
                 ->orWhere('pcb','like',"%$keyword%")
                 ->orWhere('cliente','like',"%$keyword%")
+		->orderByDesc('id')
                 ->paginate();
             return $lista;
         }
 
-        $lista = Stencil::paginate();
+        $lista = Stencil::orderByDesc('id')->paginate();
         return $lista;
     }
 

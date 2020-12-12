@@ -15,7 +15,6 @@ class TensionCreateReq extends FormRequest
     {
         return [
             'codigo' => 'required|string',
-            'id_operador' => 'required|integer',
             'tension' => 'required|integer'
         ];
     }
