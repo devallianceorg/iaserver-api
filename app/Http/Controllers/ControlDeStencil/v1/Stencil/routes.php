@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'StencilFind@find');
 Route::get('/codigo/{codigo}', 'StencilFind@findCodigo');
 

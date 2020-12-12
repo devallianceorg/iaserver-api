@@ -53,7 +53,7 @@ class CogiscanDB2 extends Controller
 
     private function services()
     {
-        $class = 'App\Http\Controllers\Cogiscan\CogiscanDB2';
+        $class = 'App\Http\Controllers\Cogiscan\v1\CogiscanDB2';
 
         $array1 = get_class_methods($class);
         if($parent_class = get_parent_class($class)){

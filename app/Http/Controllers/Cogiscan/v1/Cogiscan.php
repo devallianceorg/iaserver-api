@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Response;
  *
  * Lista de metodos disponibles {@url http://arushap34/iaserver/public/cogiscan/services}
  *
- * @author Matias Flores <matius77@gmail.com>
- * @author Diego Maidana <dmaidana@newsan.com.ar>
- * @author Jose Maria Cassarotto <jmcasarotto@newsan.com.ar>
  *
  * @package IAServer\Http\Controllers\Cogiscan
  */

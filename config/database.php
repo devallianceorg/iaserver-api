@@ -167,6 +167,18 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+        
+        'memorias' => [
+            'driver' => 'sqlsrv',
+            'host' => env('MEMORIAS_DB_HOST'),
+            'port' => env('MEMORIAS_DB_PORT'),
+            'database' => env('MEMORIAS_DB_DATABASE'),
+            'username' => env('MEMORIAS_DB_USERNAME'),
+            'password' => env('MEMORIAS_DB_PASSWORD'),
+            'charset' => 'utf8mb4',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
 
         'stencil' => [
             'driver' => 'mysql',
