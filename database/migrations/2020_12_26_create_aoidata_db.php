@@ -91,7 +91,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('history_inspeccion_panel')) 
         {
             Schema::connection('aoidata')->create('history_inspeccion_panel', function (Blueprint $table) {
-                $table->bigIncrements('id_panel_history')
+                $table->bigIncrements('id_panel_history');
                 $table->string('modo');
                 $table->bigInteger('id');
                 $table->integer('id_maquina');
