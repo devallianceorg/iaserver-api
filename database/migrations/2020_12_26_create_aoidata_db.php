@@ -142,7 +142,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('history_inspeccion_detalle')) 
         {
             Schema::connection('aoidata')->create('history_inspeccion_detalle', function (Blueprint $table) {
-                $table->bigIncrements('id_detalle_history')
+                $table->bigIncrements('id_detalle_history');
                 $table->bigInteger('id_bloque_history');
                 $table->bigInteger('id_bloque');
                 $table->string('referencia');
