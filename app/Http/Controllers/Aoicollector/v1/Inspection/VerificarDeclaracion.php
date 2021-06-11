@@ -24,6 +24,7 @@ class VerificarDeclaracion extends Controller
 
     public function panelSecundarioEnInterfazWip($panel)
     {
+        dd("panelSecundarioEnInterfazWip",$panel);
         $w = new Wip();
         if(Str::endsWith($panel->inspected_op,"-B"))
         {

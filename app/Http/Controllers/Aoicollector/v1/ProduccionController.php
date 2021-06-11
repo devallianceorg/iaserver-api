@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Aoicollector\v1;
 
+use App\Http\Controllers\Aoicollector\v1\ProduccionController;
 use App\Http\Controllers\Aoicollector\Model\Bloque;
 use App\Http\Controllers\Aoicollector\Model\Panel;
 use App\Http\Controllers\Aoicollector\Model\Produccion;
@@ -96,10 +97,11 @@ class ProduccionController extends Controller
         $error = null;
         $mode = null;
         if (is_numeric($aoibarcode)) {
-            $produccion = Produccion::byLine($aoibarcode);
+            $produccion = ProduccionController::byLine($aoibarcode);
             $mode = 'byLine';
         } else {
-            $produccion = Produccion::barcode($aoibarcode);
+            dd("por aca", $aoibarcode);
+            $produccion = ProduccionController::barcode($aoibarcode);
             $mode = 'barcode';
         }
 

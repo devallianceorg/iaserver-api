@@ -16,17 +16,16 @@ class CreateWipOt extends Migration
         if (!Schema::connection('sqlebs')->hasTable('XXE_WIP_OT')) 
         {
             Schema::connection('sqlebs')->create('XXE_WIP_OT', function (Blueprint $table) {
-                $table->string('NRO_OP',30);
-                $table->integer('NRO_INFORME');
-                $table->string("CODIGO_PRODUCTO",50);
-                $table->integer("CANTIDAD");
-                $table->string("REFERENCIA_1",30);
-                $table->tinyInteger("TRANS_OK");
-                $table->string("EBS_ERROR_DESC",100);
-                $table->string("EBS_ERROR_TRANS",100);
-                $table->datetime('FECHA_PROCESO');
-                $table->timestamp('FECHA_INSERCION');
+                $table->bigIncrements('ID');
                 $table->string('ORGANIZATION_CODE',3);                
+                $table->string('WIP_ENTITY_NAME',30);
+                $table->integer("START_QUANTITY");
+                $table->integer("QUANTITY_COMPLETED");
+                $table->string("ALTERNATE_BOM_DESIGNATOR");
+                $table->integer("PRIMARY_ITEM_ID");
+                $table->string("SEGMENT1");
+                $table->string("DESCRIPTION");
+                $table->timestamps();
             });
         }
     }

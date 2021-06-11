@@ -4,11 +4,16 @@ namespace App\Http\Controllers\IAServer;
 
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Session;
 
 class Filter extends Controller
 {
+    protected $request;
+
+    public function __construct(Request $request) {
+        $this->request = $request;
+    }
     public static function turnoSession()
     {
         $default = 'M';
@@ -28,10 +33,10 @@ class Filter extends Controller
         {
             if(!Session::has($input_request_name))
             {
-                Session::set($input_request_name, $default);
+                Session::put($input_request_name, $default);
             }
         } else {
-            Session::set($input_request_name, $input_value);
+            Session::put($input_request_name, $input_value);
         }
         return Session::get($input_request_name);
     }

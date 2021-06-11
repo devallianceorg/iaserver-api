@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DEFAULT_CONNECTION', 'mysql'),
+    'default' => env('DEFAULT_CONNECTION', 'sqlsrv'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,11 @@ return [
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('SQLSRV_DATABASE_URL'),
-            'host' => env('SQLSRV_DB_HOST', 'localhost'),
-            'port' => env('SQLSRV_DB_PORT', '1433'),
-            'database' => env('SQLSRV_DB_DATABASE', 'forge'),
-            'username' => env('SQLSRV_DB_USERNAME', 'forge'),
-            'password' => env('SQLSRV_DB_PASSWORD', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
@@ -78,13 +78,23 @@ return [
 
         'aoidata' => [
             'driver' => 'sqlsrv',
-            'host' => env('AOIDATA_DB_HOST', '127.0.0.1'),
-            'port' => env('AOIDATA_DB_PORT', '1433'),
-            'database' => env('AOIDATA_DB_DATABASE', 'forge'),
-            'username' => env('AOIDATA_DB_USERNAME', 'forge'),
-            'password' => env('AOIDATA_DB_PASSWORD', ''),
+            'host' => env('AOIDATA_DB_HOST'),
+            'port' => env('AOIDATA_DB_PORT'),
+            'database' => env('AOIDATA_DB_DATABASE'),
+            'username' => env('AOIDATA_DB_USERNAME'),
+            'password' => env('AOIDATA_DB_PASSWORD'),
             'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+        'iaserver' => [
+            'driver' => 'sqlsrv',
+            'host' => env('IASERVER_DB_HOST'),
+            'port' => env('IASERVER_DB_PORT'),
+            'database' => env('IASERVER_DB_DATABASE'),
+            'username' => env('IASERVER_DB_USERNAME'),
+            'password' => env('IASERVER_DB_PASSWORD'),
+            'charset' => 'utf8mb4',
             'prefix' => '',
             'prefix_indexes' => true,
         ],

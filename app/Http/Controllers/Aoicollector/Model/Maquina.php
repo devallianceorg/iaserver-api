@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Maquina extends Model
 {
     protected $connection = 'aoidata';
-    protected $table = 'aoidata.maquina';
+    protected $table = 'maquina';
     
     public function scopeRns($query) {
         return $query->where('tipo','R')->get();

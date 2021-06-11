@@ -57,8 +57,8 @@ class PanelHistoryController extends Controller
     public static function buscarPanel($barcode,$proceso="")
     {
         $query = PanelHistory::where('hip.panel_barcode',$barcode)
-            ->from('aoidata.history_inspeccion_panel as hip')
-            ->leftJoin('aoidata.maquina as m', 'm.id','=','hip.id_maquina');
+            ->from('history_inspeccion_panel as hip')
+            ->leftJoin('maquina as m', 'm.id','=','hip.id_maquina');
             if($proceso =="B")
             {$query = $query->where('m.proceso','B');}
 
@@ -353,21 +353,21 @@ class PanelHistoryController extends Controller
             ->get();
     }
 
-    public function cogiscan()
+    public function cogiscan($panel_barcode)
     {
         $cogiscanService= new Cogiscan();
-        return $cogiscanService->queryItem($this->panel_barcode);
+        return $cogiscanService->queryItem(panel_barcode);
     }
 
-    public function smt()
+    public function smt($panel)
     {
         $w = new Wip();
-        if($this->id_maquina == 10 || $this->id_maquina == 3)
+        if($panel->id_maquina == 10 || $panel->id_maquina == 3)
         {
-            $inspected_op = $this->formatPo();
+            $inspected_op = $this->formatPo($panel->inspected_op);
         }
         else{
-            $inspected_op = $this->inspected_op;
+            $inspected_op = $panel->inspected_op;
         }
         $smt = Smtdatabase::findOp($inspected_op);
         if($smt->semielaborado == null)
@@ -380,7 +380,7 @@ class PanelHistoryController extends Controller
                 $smt->save();
             }
         }
-
+        
         return $smt;
     }
 

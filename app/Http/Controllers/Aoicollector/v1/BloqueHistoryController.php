@@ -11,9 +11,9 @@ class BloqueHistoryController extends Controller
   public static function buscar($barcode,$proceso="")
     {
         $q = BloqueHistory::where('hib.barcode', $barcode)
-            ->from('aoidata.history_inspeccion_bloque as hib')
-            ->leftjoin('aoidata.history_inspeccion_panel as hip','hib.id_panel_history','=','hip.id_panel_history')
-            ->leftjoin('aoidata.maquina as m','hip.id_maquina','=','m.id')
+            ->from('history_inspeccion_bloque as hib')
+            ->leftjoin('history_inspeccion_panel as hip','hib.id_panel_history','=','hip.id_panel_history')
+            ->leftjoin('maquina as m','hip.id_maquina','=','m.id')
             ->where('hib.etiqueta','E');
 
             if($proceso == "B")

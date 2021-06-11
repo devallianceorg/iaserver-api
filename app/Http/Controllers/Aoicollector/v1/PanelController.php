@@ -96,9 +96,10 @@ class PanelController extends Controller
       return $query;
   }
 
-  function isSecundario()
+  function isSecundario($panel)
   {
-      if($this->bloques == Panel::joinBloques()->where('etiqueta','V')->count()) {
+      $etiquetasVirtuales = Panel::where("panel_barcode",$panel->panel_barcode)->first()->joinBloques()->where('etiqueta','V')->count();
+      if($panel->bloques == $etiquetasVirtuales) {
           return true;
       } else
       {
