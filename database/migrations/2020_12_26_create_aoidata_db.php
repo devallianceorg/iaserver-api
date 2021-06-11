@@ -16,7 +16,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('aoi_ng')) 
         {
             Schema::connection('aoidata')->create('aoi_ng', function (Blueprint $table) {
-                $table->bigIncrements('id')->primary();
+                $table->bigIncrements('id');
                 $table->integer('id_maquina');
                 $table->string('panel_barcode');
                 $table->date('date');
@@ -28,7 +28,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('aoi_pointer')) 
         {
             Schema::connection('aoidata')->create('aoi_pointer', function (Blueprint $table) {
-                $table->bigIncrements('id')->primary();
+                $table->bigIncrements('id');
                 $table->date('date');
                 $table->time('time');
                 $table->datetime('pointer');
@@ -39,7 +39,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('cuarentena')) 
         {
             Schema::connection('aoidata')->create('cuarentena', function (Blueprint $table) {
-                $table->bigIncrements('id')->primary();
+                $table->bigIncrements('id');
                 $table->integer('id_user_calidad');
                 $table->text('motivo');
                 $table->enum('tipo', ['CODE', 'OP', 'AOI']);
@@ -54,7 +54,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('cuarentena_detalle')) 
         {
             Schema::connection('aoidata')->create('cuarentena_detalle', function (Blueprint $table) {
-                $table->bigIncrements('id')->primary();
+                $table->bigIncrements('id');
                 $table->integer('id_cuarentena');
                 $table->string('barcode');
                 $table->datetime('created_at');
@@ -66,7 +66,7 @@ class AoidataDb extends Migration
         if (!Schema::connection('aoidata')->hasTable('cuarentena_pointer')) 
         {
             Schema::connection('aoidata')->create('cuarentena_pointer', function (Blueprint $table) {
-                $table->bigIncrements('id')->primary();
+                $table->bigIncrements('id');
                 $table->string('op');
                 $table->integer('id_user_calidad');
                 $table->text('motivo');
