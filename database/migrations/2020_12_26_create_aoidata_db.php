@@ -217,6 +217,25 @@ class AoidataDb extends Migration
             });
         }
 
+        if (!Schema::connection('aoidata')->hasTable('route_op')) 
+        {
+            Schema::connection('aoidata')->create('route_op', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('op');
+                $table->string('name');
+                $table->tinyInteger('declare');
+                $table->string('regex');
+                $table->string('qty_etiquetas');
+                $table->string('qty_bloques');
+                $table->tinyInteger('is_secundaria');
+                $table->string('cogiscan_partnumber');
+                $table->string('qty_placas_x_panel');
+                $table->string('qty_panel');
+                $table->dateTime('created_at');
+                $table->dateTime('updated_at');
+            });
+        }
+
         if (!Schema::connection('aoidata')->hasTable('ia_traza')) 
         {
             Schema::connection('aoidata')->create('ia_traza', function (Blueprint $table) {
@@ -428,25 +447,6 @@ class AoidataDb extends Migration
                 $table->bigIncrements('id');
                 $table->smallInteger('faultcode');
                 $table->string('descripcion');
-            });
-        }
-
-        if (!Schema::connection('aoidata')->hasTable('route_op')) 
-        {
-            Schema::connection('aoidata')->create('route_op', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('op');
-                $table->string('name');
-                $table->tinyInteger('declare');
-                $table->string('regex');
-                $table->string('qty_etiquetas');
-                $table->string('qty_bloques');
-                $table->tinyInteger('is_secundaria');
-                $table->string('cogiscan_partnumber');
-                $table->string('qty_placas_x_panel');
-                $table->string('qty_panel');
-                $table->dateTime('created_at');
-                $table->dateTime('updated_at');
             });
         }
 
